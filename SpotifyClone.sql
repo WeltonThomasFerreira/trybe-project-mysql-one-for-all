@@ -1,5 +1,3 @@
-DROP DATABASE IF EXISTS SpotifyClone;
-
 -- CRIAÇÃO DO SCHEMA
 -- Criação do banco de dados
 CREATE DATABASE IF NOT EXISTS SpotifyClone;
