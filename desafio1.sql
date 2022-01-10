@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS SpotifyClone;
 CREATE DATABASE IF NOT EXISTS SpotifyClone;
 
+DROP TABLE IF EXISTS `SpotifyClone`.`plans`;
 CREATE TABLE IF NOT EXISTS `SpotifyClone`.`plans` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(45) NOT NULL,
@@ -9,13 +10,14 @@ CREATE TABLE IF NOT EXISTS `SpotifyClone`.`plans` (
   ENGINE = InnoDB;
 
 INSERT INTO `SpotifyClone`.`plans`
-  (`id`, `type`, `price`)
+  (`type`, `price`)
 VALUES
-  (DEFAULT, 'gratuito', '0'),
-  (DEFAULT, 'pessoal', '6.99'),
-  (DEFAULT, 'familiar', '7.99'),
-  (DEFAULT, 'universitario', '5.99');
+  ('gratuito', '0'),
+  ('pessoal', '6.99'),
+  ('familiar', '7.99'),
+  ('universitario', '5.99');
 
+DROP TABLE IF EXISTS `SpotifyClone`.`users`;
 CREATE TABLE IF NOT EXISTS `SpotifyClone`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -25,23 +27,26 @@ CREATE TABLE IF NOT EXISTS `SpotifyClone`.`users` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_user_plan`
     FOREIGN KEY (`plan`)
-    REFERENCES `SpotifyClone`.`plans` (`id`))
+    REFERENCES `SpotifyClone`.`plans` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 INSERT INTO `SpotifyClone`.`users`
-  (`id`, `name`, `age`, `plan`, `accession-date`)
+  (`name`, `age`, `plan`, `accession-date`)
 VALUES
-  (DEFAULT, 'Thati', '23', '1', '2019-10-20'),
-  (DEFAULT, 'Cintia', '35', '2', '2017-12-30'),
-  (DEFAULT, 'Bill', '20', '3', '2019-06-05'),
-  (DEFAULT, 'Roger', '45', '4', '2020-05-13'),
-  (DEFAULT, 'Norman', '58', '5', '2017-02-17'),
-  (DEFAULT, 'Patrick', '33', '6', '2017-01-06'),
-  (DEFAULT, 'Vivian', '26', '7', '2018-01-05'),
-  (DEFAULT, 'Carol', '19', '8', '2018-02-14'),
-  (DEFAULT, 'Angelina', '42', '9', '2018-04-29'),
-  (DEFAULT, 'Paul', '46', '10', '2017-01-17');
-  
+  ('Thati', '23', '1', '2019-10-20'),
+  ('Cintia', '35', '3', '2017-12-30'),
+  ('Bill', '20', '4', '2019-06-05'),
+  ('Roger', '45', '2', '2020-05-13'),
+  ('Norman', '58', '2', '2017-02-17'),
+  ('Patrick', '33', '3', '2017-01-06'),
+  ('Vivian', '26', '4', '2018-01-05'),
+  ('Carol', '19', '4', '2018-02-14'),
+  ('Angelina', '42', '3', '2018-04-29'),
+  ('Paul', '46', '3', '2017-01-17');
+
+DROP TABLE IF EXISTS `SpotifyClone`.`artists`;
 CREATE TABLE IF NOT EXISTS `SpotifyClone`.`artists` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -49,15 +54,16 @@ CREATE TABLE IF NOT EXISTS `SpotifyClone`.`artists` (
 ENGINE = InnoDB;
 
 INSERT INTO `SpotifyClone`.`artists`
-  (`id`, `name`)
+  (`name`)
 VALUES
-  (DEFAULT, 'Walter Phoenix'),
-  (DEFAULT, 'Peter Strong'),
-  (DEFAULT, 'Lance Day'),
-  (DEFAULT, 'Freedie Shannon'),
-  (DEFAULT, 'Tyler Isle'),
-  (DEFAULT, 'Fog');
+  ('Walter Phoenix'),
+  ('Peter Strong'),
+  ('Lance Day'),
+  ('Freedie Shannon'),
+  ('Tyler Isle'),
+  ('Fog');
 
+DROP TABLE IF EXISTS `SpotifyClone`.`albums`;
 CREATE TABLE IF NOT EXISTS `SpotifyClone`.`albums` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NOT NULL,
@@ -70,19 +76,20 @@ CREATE TABLE IF NOT EXISTS `SpotifyClone`.`albums` (
 ENGINE = InnoDB;
 
 INSERT INTO `SpotifyClone`.`albums`
-  (`id`, `title`, `release-year`, `artist`)
+  (`title`, `release-year`, `artist`)
 VALUES
-  (DEFAULT, 'Envious', '1990', '1'),
-  (DEFAULT, 'Exuberant', '1993', '1'),
-  (DEFAULT, 'Hallowed Steam', '1995', '2'),
-  (DEFAULT, 'Incadescent', '1998', '3'),
-  (DEFAULT, 'Temporary Culture', '2001', '4'),
-  (DEFAULT, 'Library of liberty', '2003', '4'),
-  (DEFAULT, 'Chained Down', '2007', '5'),
-  (DEFAULT, 'Cabinet of fools', '2012', '5'),
-  (DEFAULT, 'No guarantees', '2015', '5'),
-  (DEFAULT, 'Apparatus', '2015', '6');
+  ('Envious', '1990', '1'),
+  ('Exuberant', '1993', '1'),
+  ('Hallowed Steam', '1995', '2'),
+  ('Incadescent', '1998', '3'),
+  ('Temporary Culture', '2001', '4'),
+  ('Library of liberty', '2003', '4'),
+  ('Chained Down', '2007', '5'),
+  ('Cabinet of fools', '2012', '5'),
+  ('No guarantees', '2015', '5'),
+  ('Apparatus', '2015', '6');
 
+DROP TABLE IF EXISTS `SpotifyClone`.`tracks`;
 CREATE TABLE IF NOT EXISTS `SpotifyClone`.`tracks` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NOT NULL,
@@ -95,59 +102,64 @@ CREATE TABLE IF NOT EXISTS `SpotifyClone`.`tracks` (
 ENGINE = InnoDB;
 
 INSERT INTO `SpotifyClone`.`tracks`
-  (`id`, `title`, `duration`, `album`)
+  (`title`, `duration`, `album`)
 VALUES
- (DEFAULT, 'Soul For Us', '200', '1'),
- (DEFAULT, 'Reflections Of Magic', '163', '1'),
- (DEFAULT, 'Dance With Her Own', '116', '1'),
- (DEFAULT, 'Troubles Of My Inner Fire', '203', '2'),
- (DEFAULT, 'Time Fireworks', '152', '2'),
- (DEFAULT, 'Magic Circus', '105', '3'),
- (DEFAULT, 'Honey, So Do I', '207', '3'),
- (DEFAULT, "Sweetie, Let's Go wild", '139', '3'),
- (DEFAULT, 'She Knows', '244', '3'),
- (DEFAULT, 'Fantasy For Me', '100', '4'),
- (DEFAULT, 'Celebration Of More', '146', '4'),
- (DEFAULT, 'Rock His Everything', '223', '4'),
- (DEFAULT, 'Home Forever', '231', '4'),
- (DEFAULT, 'Diamond Power', '241', '4'),
- (DEFAULT, "Let's Be Silly", '132', '4'),
- (DEFAULT, 'Thang Of Thunder', '240', '5'),
- (DEFAULT, 'Words Of Her Life', '185', '5'),
- (DEFAULT, 'Without My Streets', '176', '5'),
- (DEFAULT, 'Need Of The Evening', '190', '6'),
- (DEFAULT, 'History Of My Roses', '222', '6'),
- (DEFAULT, 'Without My Love', '111', '6'),
- (DEFAULT, 'Walking And Game', '123', '6'),
- (DEFAULT, 'Young And Father', '197', '6'),
- (DEFAULT, 'Finding My Traditions', '179', '7'),
- (DEFAULT, 'Walking And Man', '229', '7'),
- (DEFAULT, 'Hard And Time', '135', '7'),
- (DEFAULT, "Honey, I'm A Lone Wolf", '150', '7'),
- (DEFAULT, "She Thinks I Won't Stay Tonight", '166', '8'),
- (DEFAULT, "He Heard You're Bad For Me", '154', '8'),
- (DEFAULT, "He Hopes We Can't Stay", '210', '8'),
- (DEFAULT, 'I Know I Know', '117', '8'),
- (DEFAULT, "He's Walking Away", '159', '9'),
- (DEFAULT, "He's Trouble", '138', '9'),
- (DEFAULT, 'I Heard I Want Toplans Bo Alone', '120', '9'),
- (DEFAULT, 'I Ride Alone', '151', '9'),
- (DEFAULT, 'Honey', '79', '10'),
- (DEFAULT, 'You Cheated On Me', '95', '10'),
- (DEFAULT, "Wouldn't It Be Nice", '213', '10'),
- (DEFAULT, 'Baby', '136', '10'),
- (DEFAULT, 'You Make Me Feel So..', '83', '10');
+ ('Soul For Us', '200', '1'),
+ ('Reflections Of Magic', '163', '1'),
+ ('Dance With Her Own', '116', '1'),
+ ('Troubles Of My Inner Fire', '203', '2'),
+ ('Time Fireworks', '152', '2'),
+ ('Magic Circus', '105', '3'),
+ ('Honey, So Do I', '207', '3'),
+ ("Sweetie, Let's Go wild", '139', '3'),
+ ('She Knows', '244', '3'),
+ ('Fantasy For Me', '100', '4'),
+ ('Celebration Of More', '146', '4'),
+ ('Rock His Everything', '223', '4'),
+ ('Home Forever', '231', '4'),
+ ('Diamond Power', '241', '4'),
+ ("Let's Be Silly", '132', '4'),
+ ('Thang Of Thunder', '240', '5'),
+ ('Words Of Her Life', '185', '5'),
+ ('Without My Streets', '176', '5'),
+ ('Need Of The Evening', '190', '6'),
+ ('History Of My Roses', '222', '6'),
+ ('Without My Love', '111', '6'),
+ ('Walking And Game', '123', '6'),
+ ('Young And Father', '197', '6'),
+ ('Finding My Traditions', '179', '7'),
+ ('Walking And Man', '229', '7'),
+ ('Hard And Time', '135', '7'),
+ ("Honey, I'm A Lone Wolf", '150', '7'),
+ ("She Thinks I Won't Stay Tonight", '166', '8'),
+ ("He Heard You're Bad For Me", '154', '8'),
+ ("He Hopes We Can't Stay", '210', '8'),
+ ('I Know I Know', '117', '8'),
+ ("He's Walking Away", '159', '9'),
+ ("He's Trouble", '138', '9'),
+ ('I Heard I Want Toplans Bo Alone', '120', '9'),
+ ('I Ride Alone', '151', '9'),
+ ('Honey', '79', '10'),
+ ('You Cheated On Me', '95', '10'),
+ ("Wouldn't It Be Nice", '213', '10'),
+ ('Baby', '136', '10'),
+ ('You Make Me Feel So..', '83', '10');
 
+DROP TABLE IF EXISTS `SpotifyClone`.`follows`;
 CREATE TABLE IF NOT EXISTS `SpotifyClone`.`follows` (
   `artist` INT NOT NULL,
   `user` INT NOT NULL,
   PRIMARY KEY (`user`, `artist`),
   CONSTRAINT `fk_follow_artist`
-    FOREIGN KEY (`user`)
-    REFERENCES `SpotifyClone`.`artists` (`id`),
-  CONSTRAINT `fk_follow_user`
     FOREIGN KEY (`artist`)
-    REFERENCES `SpotifyClone`.`users` (`id`))
+    REFERENCES `SpotifyClone`.`artists` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_follow_user`
+    FOREIGN KEY (`user`)
+    REFERENCES `SpotifyClone`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 INSERT INTO `SpotifyClone`.`follows`
@@ -176,20 +188,21 @@ VALUES
   ('2', '10'),
   ('6', '10');
 
+DROP TABLE IF EXISTS `SpotifyClone`.`history`;
 CREATE TABLE IF NOT EXISTS `SpotifyClone`.`history` (
   `track` INT NOT NULL,
   `date` DATETIME NOT NULL,
   `user` INT NOT NULL,
   PRIMARY KEY (`track`, `user`),
-  CONSTRAINT `fk_listening-history_track`
+  CONSTRAINT `fk_history_track`
     FOREIGN KEY (`track`)
     REFERENCES `SpotifyClone`.`tracks` (`id`),
-  CONSTRAINT `fk_listening-history_user`
+  CONSTRAINT `fk_history_user`
     FOREIGN KEY (`user`)
     REFERENCES `SpotifyClone`.`users` (`id`))
 ENGINE = InnoDB;
-  
-INSERT INTO `SpotifyClone`.`listening-history`
+
+INSERT INTO `SpotifyClone`.`history`
   (`track`, `date`, `user`)
 VALUES
   ('36', '2020-02-28 10:45:55', '1'),
