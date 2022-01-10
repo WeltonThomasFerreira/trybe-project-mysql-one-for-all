@@ -198,7 +198,7 @@ VALUES
  (DEFAULT, 'I Know I Know', '117', '8'),
  (DEFAULT, "He's Walking Away", '159', '9'),
  (DEFAULT, "He's Trouble", '138', '9'),
- (DEFAULT, 'I Heard I Want To Bo Alone', '120', '9'),
+ (DEFAULT, 'I Heard I Want Toplans Bo Alone', '120', '9'),
  (DEFAULT, 'I Ride Alone', '151', '9'),
  (DEFAULT, 'Honey', '79', '10'),
  (DEFAULT, 'You Cheated On Me', '95', '10'),
