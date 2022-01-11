@@ -1,3 +1,8 @@
+-- Referências
+-- Modelagem feita com a ajuda de Thales Lima
+-- Também foi usado o trabalho de Matheus Laurindo como referência de qualidade e revisão de dados
+-- src do PR do Matheus: https://github.com/tryber/sd-014-b-mysql-one-for-all/pull/20/
+
 DROP DATABASE IF EXISTS SpotifyClone;
 CREATE DATABASE IF NOT EXISTS SpotifyClone;
 
@@ -81,7 +86,7 @@ VALUES
   ('Envious', '1990', '1'),
   ('Exuberant', '1993', '1'),
   ('Hallowed Steam', '1995', '2'),
-  ('Incadescent', '1998', '3'),
+  ('Incandescent', '1998', '3'),
   ('Temporary Culture', '2001', '4'),
   ('Library of liberty', '2003', '4'),
   ('Chained Down', '2007', '5'),
@@ -163,30 +168,30 @@ CREATE TABLE IF NOT EXISTS `SpotifyClone`.`follows` (
 ENGINE = InnoDB;
 
 INSERT INTO `SpotifyClone`.`follows`
-  (`artist`, `user`)
+  (`user`, `artist`)
 VALUES
-  ('1', '1'),
-  ('3', '1'),
-  ('4', '1'),
-  ('1', '2'),
-  ('3', '2'),
-  ('1', '3'),
-  ('2', '3'),
-  ('4', '4'),
-  ('5', '5'),
-  ('6', '5'),
-  ('1', '6'),
-  ('3', '6'),
-  ('6', '6'),
-  ('2', '7'),
-  ('6', '7'),
-  ('1', '8'),
-  ('5', '8'),
-  ('3', '9'),
-  ('4', '9'),
-  ('6', '9'),
-  ('2', '10'),
-  ('6', '10');
+	('1', '1'),
+	('1', '4'),
+	('1', '3'),
+	('2', '1'),
+	('2', '3'),
+	('3', '2'),
+	('3', '1'),
+	('4', '4'),
+	('5', '5'),
+	('5', '6'),
+	('6', '6'),
+	('6', '3'),
+	('6', '1'),
+	('7', '2'),
+	('7', '5'),
+	('8', '1'),
+	('8', '5'),
+	('9', '6'),
+	('9', '4'),
+	('9', '3'),
+	('10', '2'),
+	('10', '6');
 
 DROP TABLE IF EXISTS `SpotifyClone`.`history`;
 CREATE TABLE IF NOT EXISTS `SpotifyClone`.`history` (
