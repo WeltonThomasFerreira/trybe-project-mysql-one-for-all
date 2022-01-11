@@ -5,4 +5,5 @@ FROM
         INNER JOIN
     SpotifyClone.artists AS artists ON artists.id = albums.artist
 WHERE
-    artists.`name` LIKE 'Walter Phoenix';
+    artists.`name` LIKE 'Walter Phoenix'
+ORDER BY album ASC;
