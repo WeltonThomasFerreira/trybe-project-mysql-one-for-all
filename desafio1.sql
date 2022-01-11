@@ -1,7 +1,7 @@
 -- Referências
 -- Modelagem feita com a ajuda de Thales Lima
 -- Também foi usado o trabalho de Matheus Laurindo como referência de qualidade e revisão de dados
--- src do PR do Matheus: https://github.com/tryber/sd-014-b-mysql-one-for-all/pull/20/files
+-- src do PR do Matheus: https://github.com/tryber/sd-014-b-mysql-one-for-all/pull/20/
 
 DROP DATABASE IF EXISTS SpotifyClone;
 CREATE DATABASE IF NOT EXISTS SpotifyClone;
